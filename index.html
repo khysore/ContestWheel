@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171717">
+  <title>Punishers LE MC New Jersey | Club Draw</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171717;
+      --muted: #696969;
+      --paper: #f2f2f2;
+      --panel: #fff;
+      --line: #d7d7d7;
+      --green: #333;
+      --green-dark: #171717;
+      --coral: #555;
+      --yellow: #dedede;
+      --blue: #666;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .09);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image: radial-gradient(#d8d8d8 0.7px, transparent 0.7px);
+      background-size: 18px 18px;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+
+    button:focus-visible, input:focus-visible, select:focus-visible, .dropzone:focus-visible {
+      outline: 3px solid #555;
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px clamp(20px, 4vw, 58px);
+      color: #f8f5ec;
+      background: var(--ink);
+      border-bottom: 4px solid #fff;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-logo {
+      display: block;
+      width: 88px;
+      height: 66px;
+      border-radius: 4px;
+      background: #fff;
+      object-fit: contain;
+    }
+    .brand-name { font-family: Georgia, serif; font-size: 19px; letter-spacing: .5px; }
+    .local-tag {
+      padding: 7px 11px;
+      border: 1px solid rgba(248, 245, 236, .32);
+      border-radius: 999px;
+      color: #d9e5dc;
+      font-size: 12px;
+      letter-spacing: .4px;
+    }
+
+    main {
+      width: min(1240px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+
+    .page-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 23px;
+    }
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.08;
+    }
+    .lede { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+    .count-chip {
+      flex: 0 0 auto;
+      min-width: 112px;
+      padding: 11px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      text-align: center;
+    }
+    .count-chip strong { display: block; font-family: Georgia, serif; font-size: 24px; line-height: 1; }
+    .count-chip span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 370px) minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .side-column { display: flex; flex-direction: column; gap: 16px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      box-shadow: var(--shadow);
+    }
+    .panel-inner { padding: 20px; }
+    .panel-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 20px; font-weight: 500; }
+    .step { color: #9a9486; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+
+    .dropzone {
+      position: relative;
+      display: grid;
+      min-height: 142px;
+      place-items: center;
+      padding: 18px;
+      border: 1.5px dashed #b7b3a7;
+      border-radius: 5px;
+      background: #faf8f1;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .dropzone:hover, .dropzone.is-dragging { border-color: var(--green); background: #edf5ef; }
+    .dropzone input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .file-glyph {
+      width: 36px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 10px;
+      border: 1px solid #9eb3a4;
+      border-radius: 4px;
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      background: #e9f1e9;
+    }
+    .dropzone strong { display: block; font-size: 14px; }
+    .dropzone small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .file-label { overflow-wrap: anywhere; color: var(--green-dark); }
+
+    .field { margin-top: 16px; }
+    .field label { display: block; margin-bottom: 7px; color: #515e57; font-size: 12px; font-weight: 800; }
+    select {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 36px 0 11px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .option-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-top: 14px;
+      color: #515e57;
+      font-size: 12px;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .option-line input { margin: 1px 0 0; accent-color: var(--green); }
+
+    .preview-wrap { margin-top: 16px; }
+    .preview-caption { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 11px; }
+
+    .wheel-panel {
+      position: relative;
+      display: flex;
+      min-height: 590px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 26px 20px 24px;
+      background-color: #fbfaf5;
+      background-image: linear-gradient(135deg, rgba(25, 125, 90, .04), transparent 44%), radial-gradient(#d9d3c4 0.7px, transparent 0.7px);
+      background-size: auto, 18px 18px;
+    }
+    .wheel-wrap {
+      position: relative;
+      width: min(100%, 540px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+    canvas { display: block; width: 100%; height: 100%; }
+    .pointer {
+      position: absolute;
+      z-index: 2;
+      top: -4px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform: translateX(-50%);
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 37px solid var(--ink);
+      filter: drop-shadow(0 3px 1px rgba(0,0,0,.16));
+    }
+    .wheel-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      transform: translate(-50%, -50%);
+      border: 5px solid #fbfaf5;
+      border-radius: 50%;
+      color: var(--yellow);
+      background: var(--ink);
+      box-shadow: 0 3px 9px rgba(24, 36, 33, .25);
+      font-family: Georgia, serif;
+      font-size: 22px;
+    }
+    .wheel-actions { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 9px; }
+    .primary-button {
+      min-width: 186px;
+      min-height: 50px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 4px;
+      color: #fffdf8;
+      background: var(--green);
+      box-shadow: 0 4px 0 var(--green-dark);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .primary-button:hover:not(:disabled) { background: var(--green-dark); transform: translateY(-1px); }
+    .primary-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 var(--green-dark); }
+    .primary-button:disabled { color: #8c958f; background: #d5d9d2; box-shadow: 0 4px 0 #b7beb6; cursor: not-allowed; }
+    .reset-button, .small-button {
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--ink);
+      background: #fffdf8;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .reset-button:hover:not(:disabled), .small-button:hover:not(:disabled) { border-color: var(--green); color: var(--green-dark); }
+    .reset-button:disabled, .small-button:disabled { color: #9d9f99; cursor: not-allowed; }
+    .wheel-hint { min-height: 17px; margin: 14px 0 0; color: var(--muted); font-size: 12px; text-align: center; }
+
+    .below-grid { margin-top: 17px; }
+    .history-panel { min-height: 120px; }
+    .history-panel .panel-inner { padding: 17px 20px; }
+    .history-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0 0; padding: 0; list-style: none; }
+    .history-list li { max-width: 100%; overflow: hidden; padding: 7px 10px; border-radius: 3px; color: #254b3b; background: #e7f0e7; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+    .history-empty { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    .wheel-note { display: flex; align-items: center; padding: 16px 18px; border-left: 4px solid var(--coral); color: #5e625a; background: rgba(255,253,248,.82); font-size: 12px; line-height: 1.5; }
+
+    .winner-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(17, 26, 23, .68);
+    }
+    .winner-overlay[hidden] { display: none; }
+    .winner-dialog {
+      width: min(460px, 100%);
+      padding: 34px 28px 25px;
+      border: 4px solid var(--yellow);
+      border-radius: 7px;
+      background: var(--panel);
+      box-shadow: 0 24px 80px rgba(0,0,0,.28);
+      text-align: center;
+      animation: appear .28s ease-out both;
+    }
+    @keyframes appear { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .winner-label { margin: 0; color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; }
+    .winner-name { margin: 12px 0 21px; overflow-wrap: anywhere; font-family: Georgia, serif; font-size: 36px; font-weight: 500; line-height: 1.13; }
+    .winner-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; }
+
+    @media (max-width: 850px) {
+      .workbench, .below-grid { grid-template-columns: 1fr; }
+      .workbench { gap: 16px; }
+      .wheel-panel { grid-row: 1; min-height: auto; }
+      .wheel-wrap { width: min(100%, 470px); }
+      .side-column { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+      .side-column > .panel:first-child { grid-column: 1 / -1; }
+      .below-grid { margin-top: 16px; }
+    }
+    @media (max-width: 560px) {
+      main { width: min(100% - 24px, 480px); padding-top: 24px; }
+      .topbar { min-height: 64px; padding: 12px; }
+      .brand-logo { width: 72px; height: 54px; }
+      .brand-name { font-size: 15px; }
+      .local-tag { font-size: 10px; }
+      .page-heading { align-items: flex-start; }
+      h1 { font-size: 31px; }
+      .lede { max-width: 240px; font-size: 12px; }
+      .count-chip { min-width: 78px; padding: 9px; }
+      .count-chip strong { font-size: 21px; }
+      .wheel-panel { padding: 20px 11px; }
+      .wheel-center { width: 60px; height: 60px; font-size: 18px; }
+      .pointer { border-left-width: 15px; border-right-width: 15px; border-top-width: 31px; }
+      .wheel-actions { gap: 10px; }
+      .primary-button { min-width: 158px; padding: 0 14px; }
+      .side-column { display: flex; }
+      .panel-inner { padding: 16px; }
+      .winner-name { font-size: 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" aria-label="Punishers LE MC New Jersey">
+      <img class="brand-logo" src="assets/punishers-mc-new-jersey.jpg" alt="">
+      <span class="brand-name">Punishers LE MC • New Jersey</span>
+    </div>
+    <span class="local-tag">CSV stays on this device</span>
+  </header>
+
+  <main>
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Punishers LE MC • New Jersey</p>
+        <h1>Who gets the prize?</h1>
+        <p class="lede">Load your list, give it a spin, and let the wheel decide.</p>
+      </div>
+      <div class="count-chip" aria-live="polite">
+        <strong id="entrantCount">0</strong>
+        <span>names in the draw</span>
+      </div>
+    </div>
+
+    <section class="workbench" aria-label="Wheel and entrant setup">
+      <aside class="side-column">
+        <section class="panel">
+          <div class="panel-inner">
+            <div class="panel-title-row">
+              <h2>Load entrants</h2>
+              <span class="step">01 / SETUP</span>
+            </div>
+            <label class="dropzone" id="dropzone" for="csvFile" tabindex="0">
+              <input id="csvFile" type="file" accept=".csv,text/csv,.txt,text/plain">
+              <span>
+                <span class="file-glyph" aria-hidden="true">CSV</span>
+                <strong>Choose a CSV file</strong>
+                <small>or drop it here</small>
+              </span>
+            </label>
+            <div class="field">
+              <label for="nameColumn">Name column</label>
+              <select id="nameColumn" disabled>
+                <option value="">Load a CSV first</option>
+              </select>
+            </div>
+            <label class="option-line" for="hasHeader">
+              <input id="hasHeader" type="checkbox" checked disabled>
+              <span>First row contains column headings</span>
+            </label>
+            <div class="preview-wrap">
+              <div class="preview-caption">
+                <span id="fileName" class="file-label">No file loaded</span>
+                <span id="previewCount">0 names loaded</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel history-panel">
+          <div class="panel-inner">
+            <div class="panel-title-row">
+              <h2>Winners</h2>
+              <button class="small-button" id="clearHistory" type="button" disabled>Clear history</button>
+            </div>
+            <p class="history-empty" id="historyEmpty">Winners will appear here after each spin.</p>
+            <ol class="history-list" id="historyList" aria-live="polite"></ol>
+          </div>
+        </section>
+      </aside>
+
+      <section class="panel wheel-panel" aria-label="Spin wheel">
+        <div class="wheel-wrap">
+          <span class="pointer" aria-hidden="true"></span>
+          <canvas id="wheel" role="img" aria-label="Prize wheel. Load a CSV to add names."></canvas>
+          <span class="wheel-center" aria-hidden="true">GO</span>
+        </div>
+        <div class="wheel-actions">
+          <button class="primary-button" id="spinButton" type="button" disabled>SPIN THE WHEEL</button>
+          <button class="reset-button" id="resetButton" type="button" disabled>Reset</button>
+        </div>
+        <p class="wheel-hint" id="status" role="status" aria-live="polite">Load a CSV with a column of names to begin.</p>
+      </section>
+    </section>
+
+    <section class="below-grid" aria-label="Draw history and details">
+      <div class="wheel-note">Names are read in your browser only. Each row in the selected column is one entry, so duplicate names count as separate entries.</div>
+    </section>
+  </main>
+
+  <div class="winner-overlay" id="winnerOverlay" hidden>
+    <section class="winner-dialog" role="dialog" aria-modal="true" aria-labelledby="winnerLabel winnerName">
+      <p class="winner-label" id="winnerLabel">The winner is</p>
+      <h2 class="winner-name" id="winnerName"></h2>
+      <div class="winner-actions">
+        <button class="primary-button" id="closeWinner" type="button">Nice one</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const palette = ["#171717", "#f4f4f4", "#333333", "#dddddd", "#555555", "#f8f8f8", "#777777", "#c8c8c8"];
+      const csvInput = document.getElementById("csvFile");
+      const dropzone = document.getElementById("dropzone");
+      const nameColumn = document.getElementById("nameColumn");
+      const headerCheck = document.getElementById("hasHeader");
+      const entrantCount = document.getElementById("entrantCount");
+      const fileName = document.getElementById("fileName");
+      const previewCount = document.getElementById("previewCount");
+      const spinButton = document.getElementById("spinButton");
+      const resetButton = document.getElementById("resetButton");
+      const clearHistoryButton = document.getElementById("clearHistory");
+      const historyList = document.getElementById("historyList");
+      const historyEmpty = document.getElementById("historyEmpty");
+      const status = document.getElementById("status");
+      const canvas = document.getElementById("wheel");
+      const context = canvas.getContext("2d");
+      const winnerOverlay = document.getElementById("winnerOverlay");
+      const winnerName = document.getElementById("winnerName");
+
+      let rows = [];
+      let headers = [];
+      let hasHeader = true;
+      let entrants = [];
+      let sourceLabel = "";
+      let wheelRotation = 0;
+      let spinning = false;
+      let hasSpun = false;
+      let resizeObserver;
+      let lastWinner = "";
+      const history = [];
+
+      function parseCsv(text) {
+        const input = text.replace(/^\uFEFF/, "");
+        const firstLine = input.split(/\r?\n/, 1)[0] || "";
+        const delimiters = [",", "\t", ";"];
+        const delimiter = delimiters.map(char => ({ char, count: firstLine.split(char).length - 1 }))
+          .sort((a, b) => b.count - a.count)[0].char;
+        const result = [];
+        let row = [];
+        let field = "";
+        let quoted = false;
+        for (let i = 0; i < input.length; i += 1) {
+          const char = input[i];
+          if (quoted) {
+            if (char === '"' && input[i + 1] === '"') { field += '"'; i += 1; }
+            else if (char === '"') quoted = false;
+            else field += char;
+          } else if (char === '"' && field.length === 0) quoted = true;
+          else if (char === delimiter) { row.push(field); field = ""; }
+          else if (char === "\n" || char === "\r") {
+            if (char === "\r" && input[i + 1] === "\n") i += 1;
+            row.push(field);
+            if (row.some(value => value.trim() !== "")) result.push(row);
+            row = [];
+            field = "";
+          } else field += char;
+        }
+        row.push(field);
+        if (row.some(value => value.trim() !== "")) result.push(row);
+        return result;
+      }
+
+      function likelyHeader(cells) {
+        return cells.some(value => /^(name|names|full\s*name|user\s*name|commenter\s*name|entrant|participant|person|winner|commenter|user)$/i.test(value.trim()));
+      }
+
+      function chooseNameColumn() {
+        nameColumn.replaceChildren();
+        const width = Math.max(headers.length, ...rows.map(row => row.length), 1);
+        for (let index = 0; index < width; index += 1) {
+          const option = document.createElement("option");
+          option.value = String(index);
+          option.textContent = headers[index] || `Column ${index + 1}`;
+          nameColumn.append(option);
+        }
+        const candidate = headers.findIndex(value => /name|entrant|participant|commenter|user/i.test(value));
+        nameColumn.value = String(candidate >= 0 ? candidate : 0);
+        nameColumn.disabled = false;
+      }
+
+      function refreshEntrants() {
+        if (!rows.length) {
+          entrants = [];
+          updateUI();
+          return;
+        }
+        hasHeader = headerCheck.checked;
+        const columnIndex = Number(nameColumn.value || 0);
+        entrants = rows.slice(hasHeader ? 1 : 0)
+          .map(row => (row[columnIndex] || "").trim())
+          .filter(Boolean);
+        updateUI();
+      }
+
+      function loadFile(file) {
+        if (!file) return;
+        if (!/\.(csv|txt)$/i.test(file.name) && file.type !== "text/csv" && file.type !== "text/plain") {
+          status.textContent = "Choose a CSV or text file.";
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            rows = parseCsv(String(reader.result || ""));
+            sourceLabel = file.name;
+            if (!rows.length) throw new Error("The file has no rows.");
+            hasHeader = likelyHeader(rows[0]);
+            headerCheck.checked = hasHeader;
+            headerCheck.disabled = false;
+            headers = hasHeader ? rows[0].map((value, index) => value.trim() || `Column ${index + 1}`) : [];
+            chooseNameColumn();
+            refreshEntrants();
+            status.textContent = entrants.length ? "Ready when you are." : "No names found in that column. Try another column.";
+          } catch (error) {
+            rows = [];
+            entrants = [];
+            updateUI();
+            status.textContent = error.message || "Could not read that CSV.";
+          }
+        };
+        reader.onerror = () => { status.textContent = "Could not read that file."; };
+        reader.readAsText(file);
+      }
+
+      function resizeWheel() {
+        const rect = canvas.getBoundingClientRect();
+        if (!rect.width) return;
+        const pixelRatio = window.devicePixelRatio || 1;
+        canvas.width = Math.round(rect.width * pixelRatio);
+        canvas.height = Math.round(rect.height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        drawWheel();
+      }
+
+      function drawWheel() {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        if (!width || !height) return;
+        const size = Math.min(width, height);
+        const center = size / 2;
+        const radius = center - 8;
+        context.clearRect(0, 0, width, height);
+        context.save();
+        context.translate(width / 2, height / 2);
+        if (!entrants.length) {
+          context.beginPath();
+          context.arc(0, 0, radius, 0, Math.PI * 2);
+          context.fillStyle = "#e8e4d9";
+          context.fill();
+          context.lineWidth = 4;
+          context.strokeStyle = "#fffdf8";
+          context.stroke();
+          context.fillStyle = "#69736d";
+          context.textAlign = "center";
+          context.textBaseline = "middle";
+          context.font = "600 15px Trebuchet MS, sans-serif";
+          context.fillText("Your wheel is", 0, -10);
+          context.fillText("waiting for names", 0, 12);
+          context.restore();
+          canvas.setAttribute("aria-label", "Empty prize wheel. Load a CSV to add names.");
+          return;
+        }
+        const slice = Math.PI * 2 / entrants.length;
+        entrants.forEach((name, index) => {
+          const start = -Math.PI / 2 + index * slice + wheelRotation;
+          const end = start + slice;
+          context.beginPath();
+          context.moveTo(0, 0);
+          context.arc(0, 0, radius, start, end);
+          context.closePath();
+          context.fillStyle = palette[index % palette.length];
+          context.fill();
+          context.lineWidth = Math.max(1, Math.min(2, size / 240));
+          context.strokeStyle = "#fffdf8";
+          context.stroke();
+          if (entrants.length <= 90 && slice > 0.038) {
+            context.save();
+            context.rotate(start + slice / 2);
+            context.translate(radius * 0.96, 0);
+            context.fillStyle = index % 2 === 1 ? "#171717" : "#fff";
+            context.textAlign = "right";
+            context.textBaseline = "middle";
+            const fontSize = Math.max(8, Math.min(15, slice * size * 0.42));
+            context.font = `700 ${fontSize}px Trebuchet MS, sans-serif`;
+            let label = name;
+            const maxWidth = radius * 0.78;
+            while (label.length > 3 && context.measureText(label).width > maxWidth) label = `${label.slice(0, -2)}…`;
+            context.fillText(label, 0, 0, maxWidth);
+            context.restore();
+          }
+        });
+        context.beginPath();
+        context.arc(0, 0, radius, 0, Math.PI * 2);
+        context.lineWidth = 5;
+        context.strokeStyle = "#fffdf8";
+        context.stroke();
+        context.restore();
+        canvas.setAttribute("aria-label", `Prize wheel with ${entrants.length} names.`);
+      }
+
+      function updateUI() {
+        entrantCount.textContent = String(entrants.length);
+        fileName.textContent = sourceLabel || "No file loaded";
+        previewCount.textContent = `${entrants.length} names loaded`;
+        spinButton.disabled = !entrants.length || spinning || hasSpun;
+        resetButton.disabled = !rows.length || spinning;
+        clearHistoryButton.disabled = !history.length;
+        historyEmpty.hidden = history.length > 0;
+        drawWheel();
+      }
+
+      function renderHistory() {
+        historyList.replaceChildren();
+        history.forEach((name, index) => {
+          const item = document.createElement("li");
+          item.textContent = `${index + 1}. ${name}`;
+          item.title = name;
+          historyList.append(item);
+        });
+        historyEmpty.hidden = history.length > 0;
+        clearHistoryButton.disabled = !history.length;
+      }
+
+      function showWinner(name) {
+        lastWinner = name;
+        winnerName.textContent = name;
+        winnerOverlay.hidden = false;
+        document.getElementById("closeWinner").focus();
+      }
+
+      function closeWinner() {
+        winnerOverlay.hidden = true;
+        spinButton.focus();
+      }
+
+      function spin() {
+        if (spinning || hasSpun || entrants.length === 0) return;
+        spinning = true;
+        spinButton.disabled = true;
+        resetButton.disabled = true;
+        const chosenIndex = Math.floor(Math.random() * entrants.length);
+        const targetOffset = (chosenIndex + 0.5) * Math.PI * 2 / entrants.length;
+        const targetPhase = ((Math.PI * 2 - targetOffset) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+        const currentPhase = ((wheelRotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const extraTurns = 5 + Math.floor(Math.random() * 3);
+        const delta = extraTurns * Math.PI * 2 + ((targetPhase - currentPhase + Math.PI * 2) % (Math.PI * 2));
+        const startRotation = wheelRotation;
+        const startTime = performance.now();
+        const duration = 5200;
+        status.textContent = "The wheel is spinning…";
+
+        function animate(now) {
+          const progress = Math.min(1, (now - startTime) / duration);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          wheelRotation = startRotation + delta * eased;
+          drawWheel();
+          if (progress < 1) requestAnimationFrame(animate);
+          else {
+            wheelRotation = startRotation + delta;
+            const winner = entrants[chosenIndex];
+            hasSpun = true;
+            history.unshift(winner);
+            renderHistory();
+            spinning = false;
+            updateUI();
+            status.textContent = "Winner selected. Reset to start a new draw.";
+            showWinner(winner);
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      function resetDraw() {
+        if (!rows.length || spinning) return;
+        entrants = rows.slice(hasHeader ? 1 : 0)
+          .map(row => (row[Number(nameColumn.value || 0)] || "").trim())
+          .filter(Boolean);
+        history.length = 0;
+        hasSpun = false;
+        wheelRotation = 0;
+        renderHistory();
+        updateUI();
+        status.textContent = entrants.length ? "Entrants restored. Ready to spin." : "No names found in that column.";
+      }
+
+      csvInput.addEventListener("change", event => loadFile(event.target.files[0]));
+      nameColumn.addEventListener("change", refreshEntrants);
+      headerCheck.addEventListener("change", refreshEntrants);
+      spinButton.addEventListener("click", spin);
+      resetButton.addEventListener("click", resetDraw);
+      clearHistoryButton.addEventListener("click", () => { history.length = 0; renderHistory(); });
+      document.getElementById("closeWinner").addEventListener("click", closeWinner);
+      winnerOverlay.addEventListener("click", event => { if (event.target === winnerOverlay) closeWinner(); });
+      document.addEventListener("keydown", event => { if (event.key === "Escape" && !winnerOverlay.hidden) closeWinner(); });
+
+      ["dragenter", "dragover"].forEach(type => dropzone.addEventListener(type, event => {
+        event.preventDefault();
+        dropzone.classList.add("is-dragging");
+      }));
+      ["dragleave", "drop"].forEach(type => dropzone.addEventListener(type, event => {
+        event.preventDefault();
+        dropzone.classList.remove("is-dragging");
+      }));
+      dropzone.addEventListener("drop", event => loadFile(event.dataTransfer.files[0]));
+      dropzone.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); csvInput.click(); }
+      });
+
+      if ("ResizeObserver" in window) {
+        resizeObserver = new ResizeObserver(resizeWheel);
+        resizeObserver.observe(canvas);
+      } else window.addEventListener("resize", resizeWheel);
+      renderHistory();
+      updateUI();
+    })();
+  </script>
+</body>
+</html>
